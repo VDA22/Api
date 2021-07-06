@@ -1,0 +1,45 @@
+openapi: 3.0.3
+info:
+  title: API
+  version: 0.1.0
+servers:
+  - url: 'https://test.com/api/mobile/v1'
+paths: null
+/test/path:
+  post:
+    tags:
+      - test
+    x-codegen-request-body-name: data
+    operationId: auth_signIn_with_email
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TestParam'
+      required: true
+    responses:
+      '200':
+        description: ''
+      '401':
+        description: |
+          This code usually means credential were not provided.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Auth scheme for regular API requests
+    PinTokenAuth:
+      type: http
+      scheme: bearer
+      description: Auth scheme for API requests with user pin code
+  schemas:
+    TestParam:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          example: Title
+
