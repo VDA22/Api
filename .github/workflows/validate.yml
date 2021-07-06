@@ -20,10 +20,10 @@ jobs:
       - name: Create directory for bundle
         run: mkdir ./bundle
 
-      - name: Bundle to single file
+      - name: Bundle to single file and validate
         run: npm run bundle-api
 
-      - name: Generate OpenAPI UI
+      - name: Generate OpenAPI UI to test it
         uses: Legion2/swagger-ui-action@v1
         with:
           output: ./public/
