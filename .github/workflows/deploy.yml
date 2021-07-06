@@ -1,0 +1,45 @@
+name: OpenAPI Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: read
+      packages: write 
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Setup bundler
+        run: npm ci
+
+      - name: Create directory for bundle
+        run: mkdir ./bundle
+
+      - name: Bundle to single file
+        run: npm run bundle-api
+
+      - name: Generate OpenAPI UI
+        uses: Legion2/swagger-ui-action@v1
+        with:
+          output: ./public/
+          spec-file: bundle/api.yaml
+
+      - name: Copy CNAME to dist
+        run: cp ./CNAME ./public/CNAME
+
+      - name: Deploy to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # deploy_key: ${{ secrets.TEST_REPO_PAGES_SECRET }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public/

@@ -1,0 +1,17 @@
+post:
+  tags:
+  - test
+  x-codegen-request-body-name: data
+  operationId: auth_signIn_with_email
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../api.yaml#/components/schemas/TestParam'
+    required: true
+  responses:
+    200:
+      description: ''
+    401:
+      description: |
+        This code usually means credential were not provided.

@@ -1,0 +1,30 @@
+name: Validate
+
+on:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Setup bundler
+        run: npm ci
+
+      - name: Create directory for bundle
+        run: mkdir ./bundle
+
+      - name: Bundle to single file and validate
+        run: npm run bundle-api
+
+      - name: Generate OpenAPI UI to test it
+        uses: Legion2/swagger-ui-action@v1
+        with:
+          output: dist/
+          spec-file: bundle/api.yaml

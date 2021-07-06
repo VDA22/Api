@@ -1,0 +1,26 @@
+openapi: 3.0.3
+info:
+  title: "API"
+  version: "0.1.0"
+
+servers:
+  - url: https://test.com/api/mobile/v1
+
+paths:
+/test/path:
+  $ref: './path/test.yaml'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Auth scheme for regular API requests
+    PinTokenAuth:
+      type: http
+      scheme: bearer
+      description: Auth scheme for API requests with user pin code
+
+  schemas:
+    TestParam:
+      $ref: './schema/testParam.yaml'
