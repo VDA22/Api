@@ -7,8 +7,8 @@ servers:
   - url: https://test.com/api/mobile/v1
 
 paths:
-/test/path:
-  $ref: './path/testt.yaml'
+  /testt/path:
+    $ref: './path/testt.yaml'
 
 components:
   securitySchemes:
