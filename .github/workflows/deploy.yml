@@ -29,30 +29,18 @@ jobs:
       - name: Bundle to single file
         run: npm run bundle-api
 
-      - name: Generate Swagger UI
+      - name: Generate OpenAPI UI
         uses: Legion2/swagger-ui-action@v1
         with:
-          output: swagger-ui
+          output: public/
           spec-file: bundle/api.yaml
 
-      - name: Deploy to GitHub Pages
+      - name: Copy CNAME to dist
+        run: cp ./CNAME public/CNAME
+
+      - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # deploy_key: ${{ secrets.TEST_REPO_PAGES_SECRET }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: swagger-ui
-          
-      # - name: Generate OpenAPI UI
-      #   uses: Legion2/swagger-ui-action@v1
-      #   with:
-      #     output: public/
-      #     spec-file: bundle/api.yaml
-
-      # - name: Copy CNAME to dist
-      #   run: cp ./CNAME public/CNAME
-
-      # - name: Deploy to Github Pages
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     # deploy_key: ${{ secrets.TEST_REPO_PAGES_SECRET }}
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: public/
+          publish_dir: public/
