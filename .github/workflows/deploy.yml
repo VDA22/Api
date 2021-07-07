@@ -23,8 +23,8 @@ jobs:
       - name: Setup bundler
         run: npm ci
 
-      # - name: Create directory for bundle
-      #   run: mkdir ./bundle
+      - name: Create directory for bundle
+        run: mkdir ./bundle
 
       - name: Bundle to single file
         run: npm run bundle-api
