@@ -4,25 +4,25 @@ info:
   version: 0.1.0
 servers:
   - url: 'https://test.com/api/mobile/v1'
-paths: null
-/test/path:
-  post:
-    tags:
-      - test
-    x-codegen-request-body-name: data
-    operationId: auth_signIn_with_email
-    requestBody:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TestParam'
-      required: true
-    responses:
-      '200':
-        description: ''
-      '401':
-        description: |
-          This code usually means credential were not provided.
+paths:
+  /testt/path:
+    post:
+      tags:
+        - test
+      x-codegen-request-body-name: data
+      operationId: auth_signIn_with_email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestParam'
+        required: true
+      responses:
+        '200':
+          description: ''
+        '401':
+          description: |
+            This code usually means credential were not provided.
 components:
   securitySchemes:
     BearerAuth:
