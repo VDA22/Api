@@ -7,7 +7,7 @@ servers:
   - url: https://test.com/api/mobile/v1
 
 paths:
-/testt/path:
+/test/path:
   $ref: './path/testt.yaml'
 
 components:
