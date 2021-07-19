@@ -5,7 +5,7 @@ info:
 servers:
   - url: 'https://test.com/api/mobile/v1'
 paths:
-  /testt/path:
+  /test/path:
     post:
       tags:
         - test
@@ -41,5 +41,5 @@ components:
       properties:
         title:
           type: string
-          example: Title
+          example: Title title
 
