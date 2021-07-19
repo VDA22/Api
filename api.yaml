@@ -8,7 +8,7 @@ servers:
 
 paths:
   /test/path:
-    $ref: './path/testt.yaml'
+    $ref: './path/test.yaml'
 
 components:
   securitySchemes:
